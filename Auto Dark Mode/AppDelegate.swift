@@ -14,6 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("status-bar-icon"))
         }
@@ -23,6 +25,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    func setTimeTablesFromLocation() {
+        // When there are no sub timetables in DB:
+            // Get location
+            // Get sun timetables for this location
+            // Persist timetables
     }
     
     func constructMenu() {
@@ -41,8 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("Dark mode already enabled")
             return
         }
-        DarkMode.toggle(_flag: true)
-        print("Enabled DarkMode")
+        if DarkMode.toggle() {
+            print("Enabled DarkMode")
+        }
     }
     
     @objc func disableDarkMode() {
@@ -50,6 +60,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             print("Dark mode already disabled")
             return
         }
-        DarkMode.toggle(_flag: false)
+        if DarkMode.toggle() {
+            print("Disabled Dark Mode")
+        }
     }
 }
