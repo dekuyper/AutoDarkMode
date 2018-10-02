@@ -28,9 +28,13 @@
 	<string>Copyright © 2018 OakGrove Software. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>Please give Auto Dark Mode access to Appearance -&gt; Preferences via Apple Script.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Auto Dark Mode needs access to Appearance -&gt; Preferences via Apple Script.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Auto Dark Mode needs access to Location services only when the application is in use. We need it to determine the sunrise and sunset times.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Auto Dark Mode needs access to Location services when the application runs in the background. We need it to determine the sunrise and sunset times.</string>
 </dict>
 </plist>

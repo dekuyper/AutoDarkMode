@@ -1,24 +1,18 @@
-//
-//  AppleScript.swift
-//  Auto Dark Mode
-//
-//  Created by Nicolae Oprisan on 02/10/2018.
-//  Copyright © 2018 OakGrove Software. All rights reserved.
-//
-
 import Foundation
 
+enum AppleScriptError: Error {
+    case runError(message: String)
+}
+
+
 struct AppleScript {
-    static func run(myAppleScript: String) ->Bool {
+    static func run(myAppleScript: String) throws -> String  {
         var error: NSDictionary?
-        let result = NSAppleScript(source: myAppleScript)?.executeAndReturnError(&error).stringValue
-        
-        if result == nil {
+        if let result = NSAppleScript(source: myAppleScript)?.executeAndReturnError(&error).stringValue {
+            return String(result)
+        } else {
             print(error)
-            return false
+            throw AppleScriptError.runError(message: "Apple script run error")
         }
-        
-        print(result)
-        return true
     }
 }

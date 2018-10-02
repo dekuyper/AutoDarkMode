@@ -14,35 +14,52 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
-        
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("status-bar-icon"))
         }
 
         constructMenu()
+        
+        setCurrentDarkModeState()
+        setDarkModeTimers()
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     
-    func setTimeTablesFromLocation() {
-        // When there are no sub timetables in DB:
-            // Get location
-            // Get sun timetables for this location
-            // Persist timetables
+    func setCurrentDarkModeState() {
+        
+        
+    }
+    
+    func getSunriseDate() -> Date {
+        return Date().addingTimeInterval(5)
+    }
+    
+    func getSunsetDate() -> Date {
+        return Date().addingTimeInterval(15)
     }
     
     func constructMenu() {
         let menu = NSMenu()
         
-        menu.addItem(NSMenuItem(title: "Enable DarkMode", action: #selector(AppDelegate.enableDarkMode), keyEquivalent: "D"))
-        menu.addItem(NSMenuItem(title: "Disable DarkMode", action: #selector(AppDelegate.disableDarkMode), keyEquivalent: "d"))
+        menu.addItem(NSMenuItem(title: "Enable Dark Mode", action: #selector(AppDelegate.enableDarkMode), keyEquivalent: "D"))
+        menu.addItem(NSMenuItem(title: "Disable Dark Mode", action: #selector(AppDelegate.disableDarkMode), keyEquivalent: "d"))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit Auto-DarkMode", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Quit Auto Dark Mode", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         statusItem.menu = menu
+    }
+    
+    func setDarkModeTimers() {
+        let sunriseDate = getSunriseDate()
+        let sunsetDate = getSunsetDate()
+        let sunriseTimer = Timer(fireAt: sunriseDate, interval: 0, target: self, selector: #selector(disableDarkMode), userInfo: nil, repeats: false)
+        let sunsetTimer = Timer(fireAt: sunsetDate, interval: 0, target: self, selector: #selector(enableDarkMode), userInfo: nil, repeats: false)
+
+        RunLoop.main.add(sunriseTimer, forMode: RunLoop.Mode.common)
+        RunLoop.main.add(sunsetTimer, forMode: RunLoop.Mode.common)
     }
     
     @objc func enableDarkMode() {

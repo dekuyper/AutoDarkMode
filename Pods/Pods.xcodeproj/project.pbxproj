@@ -1,0 +1,613 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DBDB2299E3D2A41E5856B9EC94F8DFB /* Pods-Auto Dark Mode-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E86B183632932E9A3566EBD2B3BC41A6 /* Pods-Auto Dark Mode-dummy.m */; };
+		7DA59913E3144EC656D0EF2C4F9CA17E /* Solar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BF2E9BE7A27D3D68073CA0B86BC67C7 /* Solar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9BC8C9CE794CE31D85F944AD88A6874D /* Solar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D615FF07BA7ADB14797711AFB626470 /* Solar.swift */; };
+		BBE2531D11004725BE9F71FEFEB07359 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */; };
+		BDA39B6353849530E2DC8595387FCE7F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */; };
+		D6A77AFF391A58CDDBAB55DC7E811C17 /* Solar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5CC2A46343C6444B873029A16FE8BE /* Solar-dummy.m */; };
+		E024109E52B23BDC190EC06FC827A891 /* Pods-Auto Dark Mode-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B214B56AADF6E8BCDA3543B4DD958CE /* Pods-Auto Dark Mode-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E5109AF1BE5E898A2302AB6DDCAB9865 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD6A88FB1A3DAAB5A18EBB835C5422B4;
+			remoteInfo = Solar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A16E81F48BBA1C6639BBE9F7244CB55 /* Solar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Solar.modulemap; sourceTree = "<group>"; };
+		1A8479138B34E4C9FFE70FD26EF1385E /* Pods-Auto Dark Mode-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Auto Dark Mode-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1E2EA7563A1CC0B6BE5A287DFC8B90E7 /* Pods-Auto Dark Mode-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Auto Dark Mode-frameworks.sh"; sourceTree = "<group>"; };
+		1F0EF14AD9CD4141579191003D8BAAEE /* Solar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Solar.framework; path = Solar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C356EAA9FDDA9D261846AF7EE41F00B /* Pods-Auto Dark Mode-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Auto Dark Mode-resources.sh"; sourceTree = "<group>"; };
+		2F8D777E84D4F02B739CF5B0A5F72778 /* Solar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Solar.xcconfig; sourceTree = "<group>"; };
+		3B214B56AADF6E8BCDA3543B4DD958CE /* Pods-Auto Dark Mode-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Auto Dark Mode-umbrella.h"; sourceTree = "<group>"; };
+		5BF2E9BE7A27D3D68073CA0B86BC67C7 /* Solar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Solar-umbrella.h"; sourceTree = "<group>"; };
+		6AFA8C1BDC6C50D18A4ABF78C61B5C6B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D615FF07BA7ADB14797711AFB626470 /* Solar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Solar.swift; path = Solar/Solar.swift; sourceTree = "<group>"; };
+		754DAD1058B125031A6F274E308B073C /* Pods-Auto Dark Mode.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Auto Dark Mode.modulemap"; sourceTree = "<group>"; };
+		83B4F6097C10DD02DF7303F66A3F46E5 /* Pods_Auto_Dark_Mode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Auto_Dark_Mode.framework; path = "Pods-Auto Dark Mode.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AB5CC2A46343C6444B873029A16FE8BE /* Solar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Solar-dummy.m"; sourceTree = "<group>"; };
+		B712622C92102F3D3C5186F7C15B47C5 /* Pods-Auto Dark Mode-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Auto Dark Mode-acknowledgements.plist"; sourceTree = "<group>"; };
+		CA6AAF4D63EC2D2DC3A15FE6EC397E5E /* Solar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Solar-prefix.pch"; sourceTree = "<group>"; };
+		D246EE7D72A31B216C1F29872536995C /* Pods-Auto Dark Mode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Auto Dark Mode.release.xcconfig"; sourceTree = "<group>"; };
+		DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		E214F7844756A13CA3E09BDDE112E8D2 /* Pods-Auto Dark Mode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Auto Dark Mode.debug.xcconfig"; sourceTree = "<group>"; };
+		E86B183632932E9A3566EBD2B3BC41A6 /* Pods-Auto Dark Mode-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Auto Dark Mode-dummy.m"; sourceTree = "<group>"; };
+		FDF04E85E903FAE1801EDD086F3DA8F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3599B47AE7663AFBE29BA3F52E5CBF8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBE2531D11004725BE9F71FEFEB07359 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE9DD637D53DA06F21344218401B9B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDA39B6353849530E2DC8595387FCE7F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		017A1E64B7BA7EE17364FC8F221F00CB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6AFA8C1BDC6C50D18A4ABF78C61B5C6B /* Info.plist */,
+				1A16E81F48BBA1C6639BBE9F7244CB55 /* Solar.modulemap */,
+				2F8D777E84D4F02B739CF5B0A5F72778 /* Solar.xcconfig */,
+				AB5CC2A46343C6444B873029A16FE8BE /* Solar-dummy.m */,
+				CA6AAF4D63EC2D2DC3A15FE6EC397E5E /* Solar-prefix.pch */,
+				5BF2E9BE7A27D3D68073CA0B86BC67C7 /* Solar-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Solar";
+			sourceTree = "<group>";
+		};
+		13DA9333DAD6D14387034927542923CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				15640A2752D860380AE0C1E81DBE789F /* Solar */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		15640A2752D860380AE0C1E81DBE789F /* Solar */ = {
+			isa = PBXGroup;
+			children = (
+				6D615FF07BA7ADB14797711AFB626470 /* Solar.swift */,
+				017A1E64B7BA7EE17364FC8F221F00CB /* Support Files */,
+			);
+			name = Solar;
+			path = Solar;
+			sourceTree = "<group>";
+		};
+		2D6B99E349CC9B4F679F05476906A12B /* Pods-Auto Dark Mode */ = {
+			isa = PBXGroup;
+			children = (
+				FDF04E85E903FAE1801EDD086F3DA8F2 /* Info.plist */,
+				754DAD1058B125031A6F274E308B073C /* Pods-Auto Dark Mode.modulemap */,
+				1A8479138B34E4C9FFE70FD26EF1385E /* Pods-Auto Dark Mode-acknowledgements.markdown */,
+				B712622C92102F3D3C5186F7C15B47C5 /* Pods-Auto Dark Mode-acknowledgements.plist */,
+				E86B183632932E9A3566EBD2B3BC41A6 /* Pods-Auto Dark Mode-dummy.m */,
+				1E2EA7563A1CC0B6BE5A287DFC8B90E7 /* Pods-Auto Dark Mode-frameworks.sh */,
+				2C356EAA9FDDA9D261846AF7EE41F00B /* Pods-Auto Dark Mode-resources.sh */,
+				3B214B56AADF6E8BCDA3543B4DD958CE /* Pods-Auto Dark Mode-umbrella.h */,
+				E214F7844756A13CA3E09BDDE112E8D2 /* Pods-Auto Dark Mode.debug.xcconfig */,
+				D246EE7D72A31B216C1F29872536995C /* Pods-Auto Dark Mode.release.xcconfig */,
+			);
+			name = "Pods-Auto Dark Mode";
+			path = "Target Support Files/Pods-Auto Dark Mode";
+			sourceTree = "<group>";
+		};
+		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA7AC8429882A95AA0810A9DCDED54FF /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		550BE5145F97D0986FEABD20BB9FDFDE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83B4F6097C10DD02DF7303F66A3F46E5 /* Pods_Auto_Dark_Mode.framework */,
+				1F0EF14AD9CD4141579191003D8BAAEE /* Solar.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
+				13DA9333DAD6D14387034927542923CB /* Pods */,
+				550BE5145F97D0986FEABD20BB9FDFDE /* Products */,
+				A604BF82A36EAF4F3D433E6CBCE6E7D6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A604BF82A36EAF4F3D433E6CBCE6E7D6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D6B99E349CC9B4F679F05476906A12B /* Pods-Auto Dark Mode */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		FA7AC8429882A95AA0810A9DCDED54FF /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				DF428FC7C7A6555B2B02D8E238C8D8F2 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		04B450A776D3E156A0262AAA5E8BD84E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E024109E52B23BDC190EC06FC827A891 /* Pods-Auto Dark Mode-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20A3ABBB3921E3D79E1DCFB27162FFCE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DA59913E3144EC656D0EF2C4F9CA17E /* Solar-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EF452EAD02277B0A1D5C7538A188AFBC /* Pods-Auto Dark Mode */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B8DCF8F6E3316C0ADC7F47EA55119DED /* Build configuration list for PBXNativeTarget "Pods-Auto Dark Mode" */;
+			buildPhases = (
+				04B450A776D3E156A0262AAA5E8BD84E /* Headers */,
+				9B0E2D7F01D01618DF24C799B076B20B /* Sources */,
+				3599B47AE7663AFBE29BA3F52E5CBF8C /* Frameworks */,
+				CBB98FFD63C396820D7C7CB6AC6EC8CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9288E060BDEA4F14CAF90B3F3516CE3E /* PBXTargetDependency */,
+			);
+			name = "Pods-Auto Dark Mode";
+			productName = "Pods-Auto Dark Mode";
+			productReference = 83B4F6097C10DD02DF7303F66A3F46E5 /* Pods_Auto_Dark_Mode.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FD6A88FB1A3DAAB5A18EBB835C5422B4 /* Solar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBF693A62D80A52DCD905B81688DA564 /* Build configuration list for PBXNativeTarget "Solar" */;
+			buildPhases = (
+				20A3ABBB3921E3D79E1DCFB27162FFCE /* Headers */,
+				89A488F94482205D73747C1B7CE3C3BF /* Sources */,
+				CE9DD637D53DA06F21344218401B9B4D /* Frameworks */,
+				90E2ED1A9BDE466E9066DB8B9515A436 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Solar;
+			productName = Solar;
+			productReference = 1F0EF14AD9CD4141579191003D8BAAEE /* Solar.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 550BE5145F97D0986FEABD20BB9FDFDE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF452EAD02277B0A1D5C7538A188AFBC /* Pods-Auto Dark Mode */,
+				FD6A88FB1A3DAAB5A18EBB835C5422B4 /* Solar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		90E2ED1A9BDE466E9066DB8B9515A436 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBB98FFD63C396820D7C7CB6AC6EC8CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		89A488F94482205D73747C1B7CE3C3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6A77AFF391A58CDDBAB55DC7E811C17 /* Solar-dummy.m in Sources */,
+				9BC8C9CE794CE31D85F944AD88A6874D /* Solar.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B0E2D7F01D01618DF24C799B076B20B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DBDB2299E3D2A41E5856B9EC94F8DFB /* Pods-Auto Dark Mode-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9288E060BDEA4F14CAF90B3F3516CE3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Solar;
+			target = FD6A88FB1A3DAAB5A18EBB835C5422B4 /* Solar */;
+			targetProxy = E5109AF1BE5E898A2302AB6DDCAB9865 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2B55A55AEC54499606503031F887EC35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E214F7844756A13CA3E09BDDE112E8D2 /* Pods-Auto Dark Mode.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-Auto Dark Mode/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MODULEMAP_FILE = "Target Support Files/Pods-Auto Dark Mode/Pods-Auto Dark Mode.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9992CE2C5F65320F0081E9A0ACAFFF91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		AAB47A1B0234BB9B592451CE5CAA63CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F8D777E84D4F02B739CF5B0A5F72778 /* Solar.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Solar/Solar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Solar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/Solar/Solar.modulemap";
+				PRODUCT_MODULE_NAME = Solar;
+				PRODUCT_NAME = Solar;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D34AE5923CEF81AA95BE0E8434324BEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F8D777E84D4F02B739CF5B0A5F72778 /* Solar.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Solar/Solar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Solar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/Solar/Solar.modulemap";
+				PRODUCT_MODULE_NAME = Solar;
+				PRODUCT_NAME = Solar;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D79C9CF82E0503B6800775A4C33DD9A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		E242269E7E6DC12171C25A707247375E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D246EE7D72A31B216C1F29872536995C /* Pods-Auto Dark Mode.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-Auto Dark Mode/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MODULEMAP_FILE = "Target Support Files/Pods-Auto Dark Mode/Pods-Auto Dark Mode.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D79C9CF82E0503B6800775A4C33DD9A7 /* Debug */,
+				9992CE2C5F65320F0081E9A0ACAFFF91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8DCF8F6E3316C0ADC7F47EA55119DED /* Build configuration list for PBXNativeTarget "Pods-Auto Dark Mode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B55A55AEC54499606503031F887EC35 /* Debug */,
+				E242269E7E6DC12171C25A707247375E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBF693A62D80A52DCD905B81688DA564 /* Build configuration list for PBXNativeTarget "Solar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAB47A1B0234BB9B592451CE5CAA63CF /* Debug */,
+				D34AE5923CEF81AA95BE0E8434324BEA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
