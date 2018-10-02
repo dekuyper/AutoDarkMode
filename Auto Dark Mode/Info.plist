@@ -22,10 +22,14 @@
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2018 OakGrove Software. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Please give Auto Dark Mode access to Appearance -&gt; Preferences via Apple Script.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

@@ -11,6 +11,7 @@
 		0E9A26172163586F00547206 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9A26162163586F00547206 /* ViewController.swift */; };
 		0E9A26192163586F00547206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A26182163586F00547206 /* Assets.xcassets */; };
 		0E9A261C2163586F00547206 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A261A2163586F00547206 /* Main.storyboard */; };
+		0E9A262521635BC800547206 /* DarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9A262421635BC800547206 /* DarkMode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,8 @@
 		0E9A261B2163586F00547206 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E9A261D2163586F00547206 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E9A261E2163586F00547206 /* Auto_Dark_Mode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Auto_Dark_Mode.entitlements; sourceTree = "<group>"; };
+		0E9A262421635BC800547206 /* DarkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkMode.swift; sourceTree = "<group>"; };
+		0E9A264421636AEE00547206 /* Auto Dark Mode.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Auto Dark Mode.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +56,8 @@
 		0E9A26132163586F00547206 /* Auto Dark Mode */ = {
 			isa = PBXGroup;
 			children = (
+				0E9A264421636AEE00547206 /* Auto Dark Mode.entitlements */,
+				0E9A262421635BC800547206 /* DarkMode.swift */,
 				0E9A26142163586F00547206 /* AppDelegate.swift */,
 				0E9A26162163586F00547206 /* ViewController.swift */,
 				0E9A26182163586F00547206 /* Assets.xcassets */,
@@ -95,6 +100,11 @@
 				TargetAttributes = {
 					0E9A26102163586F00547206 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -133,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E9A262521635BC800547206 /* DarkMode.swift in Sources */,
 				0E9A26172163586F00547206 /* ViewController.swift in Sources */,
 				0E9A26152163586F00547206 /* AppDelegate.swift in Sources */,
 			);
@@ -271,7 +282,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Auto Dark Mode/Auto_Dark_Mode.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 23Y28PW4VV;
@@ -290,7 +300,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Auto Dark Mode/Auto_Dark_Mode.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 23Y28PW4VV;
