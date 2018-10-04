@@ -9,6 +9,7 @@
 import Foundation
 import Solar
 import CoreLocation
+import UserNotifications
 
 enum SolarLibError: Error {
     case getCivilSunrise
@@ -21,65 +22,107 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
     var initStateIsSet = false
     var timersAreSet = false
     var timers: [Timer]?
-    
+
     func startReceivingLocationChanges() {
         let authorizationStatus = CLLocationManager.authorizationStatus()
-        if authorizationStatus != .authorizedAlways {
-            // User has not authorized access to location information.
-            return
-        }
-        // Do not start services that aren't available.
-        if !CLLocationManager.locationServicesEnabled() {
-            // Location services is not available.
-            return
-        }
-        // Configure and start the service.
+        handleLocationAuthorizationStatus(status: authorizationStatus)
+    }
+
+    func configLocationManager() {
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = 1000.0  // In meters.
         locationManager.delegate = self
-        locationManager.startUpdatingLocation()
     }
-    
+
+    func handleLocationAuthorizationStatus(status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            showAlert(
+                title: "Access to Location Services is Not Determined",
+                message: "Parental Controls or a system administrator may be limiting your access to location services. Ask them to."
+            )
+        case .restricted:
+            showAlert(
+                title: "Access to Location Services is Restricted",
+                message: "Parental Controls or a system administrator may be limiting your access to location services. Ask them to."
+            )
+        case .authorizedAlways:
+            locationManager.startUpdatingLocation()
+        case .denied:
+            print("I'm sorry - I can't show location. User has not authorized it")
+            statusDeniedAlert()
+        }
+    }
+
+    func showAlert(title: String, message: String) {
+        print(
+            "Title: \(title)",
+            "Message: \(message)"
+        )
+    }
+
+    func statusDeniedAlert() {
+        print("Location access denied")
+//        let alertController = UIAlertController(title: "Background Location Access Disabled", message: "In order to show the location weather forecast, please open this app's settings and set location access to 'While Using'.", preferredStyle: .alert)
+//        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        alertController.addAction(UIAlertAction(title: "Open Settings", style: .`default`, handler: { action in
+//            if #available(iOS 10.0, *) {
+//                let settingsURL = URL(string: UIApplicationOpenSettingsURLString)!
+//                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+//            } else {
+//                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+//                    UIApplication.shared.openURL(url as URL)
+//                }
+//            }
+//        }))
+//        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        handleLocationAuthorizationStatus(status: status)
+    }
+
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
         let lastLocation = locations.last!
         // TODO: Filter coordinates that are from cache
+        print(lastLocation.coordinate)
         solarLib = Solar(coordinate: lastLocation.coordinate)
-        initDarkModeState()
+        initState()
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if let error = error as? CLError, error.code == .denied {
             // Location updates are not authorized.
             manager.stopUpdatingLocation()
+            print(error)
             // alert user he will need location approved for this to work
             return
         }
     }
 
-    func initDarkModeState() {
+    func initState() {
         if initStateIsSet {
             return
         }
 
-        if solarLib?.isDaytime ?? true {
-            disableDarkMode()
-        } else {
-            enableDarkMode()
-        }
+        solarLib?.isDaytime != nil ? disableDarkMode() : enableDarkMode()
 
         do {
             try setTimers()
         } catch is SolarLibError {
-            // Alert notification handler
+            print("Internal error occured while trying to determine current position of the sun.")
         } catch {
-            // Alert notification handler
+            print("Generic internal error while trying to set timers")
         }
 
         initStateIsSet = true
     }
-    
+
     func setTimers() throws {
-        guard timersAreSet else {return}
+        guard timersAreSet else {
+            print()
+            return
+        }
         
         let now = Date()
         let sunriseDate = try getSunriseDate()

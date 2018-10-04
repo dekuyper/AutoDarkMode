@@ -21,20 +21,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         constructMenu()
         darkModeHandler = DarkModeHandler()
+        darkModeHandler?.startReceivingLocationChanges()
     }
-    
+
     func applicationWillTerminate(_ aNotification: Notification) {
         darkModeHandler?.invalidateTimers()
     }
 
     func constructMenu() {
         let menu = NSMenu()
-        
-        menu.addItem(NSMenuItem(title: "Enable Dark Mode", action: #selector(DarkModeHandler.enableDarkMode), keyEquivalent: "D"))
-        menu.addItem(NSMenuItem(title: "Disable Dark Mode", action: #selector(DarkModeHandler.disableDarkMode), keyEquivalent: "d"))
+
+        menu.addItem(NSMenuItem(title: "Enable Dark Mode", action: #selector(enableDarkMode), keyEquivalent: "D"))
+        menu.addItem(NSMenuItem(title: "Disable Dark Mode", action: #selector(disableDarkMode), keyEquivalent: "d"))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit Auto Dark Mode", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         statusItem.menu = menu
     }
+
+    @objc func enableDarkMode() {
+        darkModeHandler?.enableDarkMode()
+    }
+
+    @objc func disableDarkMode() {
+        darkModeHandler?.disableDarkMode()
+    }
+
 }

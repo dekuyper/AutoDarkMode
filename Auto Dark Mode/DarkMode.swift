@@ -12,9 +12,6 @@ struct DarkMode {
         let script = command + flag
         do {
             _ = try AppleScript.run(myAppleScript: script)
-        } catch is AppleScriptError {
-            print("Could not toggle Dark mode because AppleScript returned an error.")
-            return false
         } catch {
             print("Could not toggle Dark mode because AppleScript returned an error.")
             return false
