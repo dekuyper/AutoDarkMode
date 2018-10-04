@@ -16,6 +16,7 @@
 		0E9A264F2163978700547206 /* StatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A264D2163978700547206 /* StatusViewController.xib */; };
 		0E9A26552163B50700547206 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A26542163B50700547206 /* Podfile */; };
 		0EACDFC22165671600343456 /* DarkModeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EACDFC12165671600343456 /* DarkModeHandler.swift */; };
+		0EB2204C2166C5AA000F9CCC /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2204B2166C5AA000F9CCC /* NotificationHelper.swift */; };
 		9B66C4CE29CC5DEACEB9F4DD /* Pods_Auto_Dark_Mode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DA017434FB93897258B2FA /* Pods_Auto_Dark_Mode.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		0E9A264D2163978700547206 /* StatusViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusViewController.xib; sourceTree = "<group>"; };
 		0E9A26542163B50700547206 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		0EACDFC12165671600343456 /* DarkModeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeHandler.swift; sourceTree = "<group>"; };
+		0EB2204B2166C5AA000F9CCC /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		59DA017434FB93897258B2FA /* Pods_Auto_Dark_Mode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Auto_Dark_Mode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A254B6F8E992B4195AA39F1 /* Pods-Auto Dark Mode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auto Dark Mode.release.xcconfig"; path = "Pods/Target Support Files/Pods-Auto Dark Mode/Pods-Auto Dark Mode.release.xcconfig"; sourceTree = "<group>"; };
 		8A3EF3B79BE9BA05D9DF628C /* Pods-Auto Dark Mode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auto Dark Mode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Auto Dark Mode/Pods-Auto Dark Mode.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,17 +74,18 @@
 		0E9A26132163586F00547206 /* Auto Dark Mode */ = {
 			isa = PBXGroup;
 			children = (
-				0EACDFC12165671600343456 /* DarkModeHandler.swift */,
 				0E9A264421636AEE00547206 /* Auto Dark Mode.entitlements */,
-				0E9A262421635BC800547206 /* DarkMode.swift */,
-				0E9A26142163586F00547206 /* AppDelegate.swift */,
-				0E9A26182163586F00547206 /* Assets.xcassets */,
-				0E9A261A2163586F00547206 /* Main.storyboard */,
-				0E9A261D2163586F00547206 /* Info.plist */,
 				0E9A261E2163586F00547206 /* Auto_Dark_Mode.entitlements */,
+				0E9A261D2163586F00547206 /* Info.plist */,
+				0E9A26142163586F00547206 /* AppDelegate.swift */,
 				0E9A264921638EB500547206 /* AppleScript.swift */,
+				0E9A262421635BC800547206 /* DarkMode.swift */,
+				0EACDFC12165671600343456 /* DarkModeHandler.swift */,
+				0EB2204B2166C5AA000F9CCC /* NotificationHelper.swift */,
 				0E9A264C2163978700547206 /* StatusViewController.swift */,
+				0E9A26182163586F00547206 /* Assets.xcassets */,
 				0E9A264D2163978700547206 /* StatusViewController.xib */,
+				0E9A261A2163586F00547206 /* Main.storyboard */,
 			);
 			path = "Auto Dark Mode";
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EB2204C2166C5AA000F9CCC /* NotificationHelper.swift in Sources */,
 				0E9A262521635BC800547206 /* DarkMode.swift in Sources */,
 				0EACDFC22165671600343456 /* DarkModeHandler.swift in Sources */,
 				0E9A26152163586F00547206 /* AppDelegate.swift in Sources */,
