@@ -20,7 +20,9 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let notificationHelper = NotificationHelper()
     var solarLib: Solar?
-    var timers: [Timer]?
+    var switchModeTimers = [Timer]()
+    var alertTimers = [Timer]()
+    var nextRunningTimer: Timer?
 
     func startReceivingLocationChanges() {
         let authorizationStatus = CLLocationManager.authorizationStatus()
@@ -96,6 +98,8 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func setTimers() throws {
+        invalidateTimers()
+
         let sunriseDate = try getSunriseDate()
         let sunsetDate = try getSunsetDate()
         let now = Date()
@@ -107,26 +111,31 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
         if now < sunsetDate {
             addSunsetTimer(sunsetDate: sunsetDate)
         }
+
+        setNextRunningTimer(now: now)
     }
-    
-    func invalidateTimers() {
-        timers?.forEach({timer in
-            timer.invalidate()
-            print("Timer invalidated: \(timer)")
-        })
-        timers?.removeAll()
+
+    func getNextRunningTimer() -> Timer? {
+        return nextRunningTimer
+    }
+
+    func setNextRunningTimer(now: Date) {
+        let filteredTimers = switchModeTimers.sorted(by: {$0.fireDate < $1.fireDate})
+            .filter({ $0.fireDate > now })
+
+        nextRunningTimer = filteredTimers.first!
     }
 
     func addSunriseTimer(sunriseDate: Date) {
         let timer = Timer(fireAt: sunriseDate, interval: 0, target: self, selector: #selector(disableDarkMode), userInfo: nil, repeats: false)
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
-        timers?.append(timer)
+        switchModeTimers.append(timer)
     }
 
     func addSunsetTimer(sunsetDate: Date) {
         let timer = Timer(fireAt: sunsetDate, interval: 0, target: self, selector: #selector(enableDarkMode), userInfo: nil, repeats: false)
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
-        timers?.append(timer)
+        switchModeTimers.append(timer)
     }
 
     func getSunriseDate() throws  -> Date {
@@ -159,4 +168,28 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
         }
     }
 
+    func onAppFinishedLoading() {
+        startReceivingLocationChanges()
+    }
+    
+    func onAppWillTerminate() {
+        locationManager.stopUpdatingLocation()
+        invalidateTimers()
+    }
+    
+    func invalidateTimers() {
+        switchModeTimers.forEach({timer in
+            timer.invalidate()
+        })
+        switchModeTimers.removeAll()
+
+        alertTimers.forEach({timer in
+            timer.invalidate()
+        })
+        alertTimers.removeAll()
+    }
+
+    deinit {
+        onAppWillTerminate()
+    }
 }
