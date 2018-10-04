@@ -10,4 +10,15 @@ import Foundation
 
 class NotificationHelper: NSObject, NSUserNotificationCenterDelegate {
     
+    func showAlert(title: String, message: String) {
+        print(
+            "Title: \(title)",
+            "Message: \(message)"
+        )
+    }
+    
+    func showDeniedAlert() {
+        print("Location access denied")
+    }
+
 }

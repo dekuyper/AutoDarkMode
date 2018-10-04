@@ -18,6 +18,7 @@ enum SolarLibError: Error {
 
 class DarkModeHandler: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
+    let notificationHelper = NotificationHelper()
     var solarLib: Solar?
     var timers: [Timer]?
 
@@ -38,25 +39,14 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
             configLocationManager()
             locationManager.startUpdatingLocation()
         case .restricted:
-            showAlert(
+            notificationHelper.showAlert(
                 title: "Access to Location Services is Restricted",
                 message: "Parental Controls or a system administrator may be limiting your access to location services."
             )
         case .denied:
             print("I'm sorry - I can't show location. User has not authorized it")
-            statusDeniedAlert()
+            notificationHelper.showDeniedAlert()
         }
-    }
-
-    func showAlert(title: String, message: String) {
-        print(
-            "Title: \(title)",
-            "Message: \(message)"
-        )
-    }
-
-    func statusDeniedAlert() {
-        print("Location access denied")
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -73,7 +63,7 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showAlert(
+        notificationHelper.showAlert(
             title: "Location Access Failure",
             message: "App could not access locations. Loation services may be unavailable or are turned off. Error code: \(error)"
         )
@@ -106,9 +96,9 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
     }
 
     func setTimers() throws {
-        let now = Date()
         let sunriseDate = try getSunriseDate()
         let sunsetDate = try getSunsetDate()
+        let now = Date()
 
         if now < sunriseDate {
             addSunriseTimer(sunriseDate: sunriseDate)
@@ -120,27 +110,21 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
     }
     
     func invalidateTimers() {
-        timers?.forEach({timer in timer.invalidate()})
+        timers?.forEach({timer in
+            timer.invalidate()
+            print("Timer invalidated: \(timer)")
+        })
         timers?.removeAll()
     }
 
     func addSunriseTimer(sunriseDate: Date) {
-        addTimer(date: sunriseDate, flag: false)
-    }
-    
-    func addSunsetTimer(sunsetDate: Date) {
-        addTimer(date: sunsetDate, flag: true)
+        let timer = Timer(fireAt: sunriseDate, interval: 0, target: self, selector: #selector(disableDarkMode), userInfo: nil, repeats: false)
+        RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
+        timers?.append(timer)
     }
 
-    func addTimer(date: Date, flag: Bool) {
-        let timer: Timer
-        
-        if flag {
-            timer = Timer(fireAt: date, interval: 0, target: self, selector: #selector(enableDarkMode), userInfo: nil, repeats: false)
-        } else {
-            timer = Timer(fireAt: date, interval: 0, target: self, selector: #selector(disableDarkMode), userInfo: nil, repeats: false)
-        }
-        
+    func addSunsetTimer(sunsetDate: Date) {
+        let timer = Timer(fireAt: sunsetDate, interval: 0, target: self, selector: #selector(enableDarkMode), userInfo: nil, repeats: false)
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
         timers?.append(timer)
     }
