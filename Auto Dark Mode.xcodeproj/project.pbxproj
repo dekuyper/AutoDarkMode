@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E77DB8A21666C9500C0E348 /* MenuHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E77DB8921666C9500C0E348 /* MenuHandler.swift */; };
 		0E9A26152163586F00547206 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9A26142163586F00547206 /* AppDelegate.swift */; };
 		0E9A26192163586F00547206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A26182163586F00547206 /* Assets.xcassets */; };
 		0E9A261C2163586F00547206 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A261A2163586F00547206 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E77DB8921666C9500C0E348 /* MenuHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHandler.swift; sourceTree = "<group>"; };
 		0E9A26112163586F00547206 /* Auto Dark Mode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Auto Dark Mode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9A26142163586F00547206 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9A26182163586F00547206 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				0E9A264921638EB500547206 /* AppleScript.swift */,
 				0E9A262421635BC800547206 /* DarkMode.swift */,
 				0EACDFC12165671600343456 /* DarkModeHandler.swift */,
+				0E77DB8921666C9500C0E348 /* MenuHandler.swift */,
 				0EB2204B2166C5AA000F9CCC /* NotificationHelper.swift */,
 				0E9A264C2163978700547206 /* StatusViewController.swift */,
 				0E9A26182163586F00547206 /* Assets.xcassets */,
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E77DB8A21666C9500C0E348 /* MenuHandler.swift in Sources */,
 				0EB2204C2166C5AA000F9CCC /* NotificationHelper.swift in Sources */,
 				0E9A262521635BC800547206 /* DarkMode.swift in Sources */,
 				0EACDFC22165671600343456 /* DarkModeHandler.swift in Sources */,

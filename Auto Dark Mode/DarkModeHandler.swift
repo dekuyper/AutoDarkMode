@@ -9,14 +9,14 @@
 import Foundation
 import Solar
 import CoreLocation
-import UserNotifications
 
 enum SolarLibError: Error {
     case getCivilSunrise
     case getCivilSunset
 }
 
-class DarkModeHandler: NSObject, CLLocationManagerDelegate {
+class DarkModeHandler: NSObject, CLLocationManagerDelegate, NSMenuDelegate {
+    let initialDarkMode = DarkMode.isEnabled
     let locationManager = CLLocationManager()
     let notificationHelper = NotificationHelper()
     var solarLib: Solar?
@@ -61,6 +61,8 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
         if initState() {
             print("Stopping location gathering")
             manager.stopUpdatingLocation()
+            print("Rebuilding the menu")
+            
         }
     }
 
@@ -168,13 +170,14 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    func onAppFinishedLoading() {
+    func onAppFinishedLaunching() {
         startReceivingLocationChanges()
     }
     
     func onAppWillTerminate() {
         locationManager.stopUpdatingLocation()
         invalidateTimers()
+        DarkMode.toggle(_force: initialDarkMode)
     }
     
     func invalidateTimers() {
