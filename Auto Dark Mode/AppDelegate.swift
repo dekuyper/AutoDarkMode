@@ -30,7 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func constructMenu() {
         let menu = NSMenu()
-
+        // TODO: Only show one action (Disable if enabled and reverse)
+        // TODO: Show status and at what times it changes
         menu.addItem(NSMenuItem(title: "Enable Dark Mode", action: #selector(enableDarkMode), keyEquivalent: "D"))
         menu.addItem(NSMenuItem(title: "Disable Dark Mode", action: #selector(disableDarkMode), keyEquivalent: "d"))
         menu.addItem(NSMenuItem.separator())
@@ -39,6 +40,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = menu
     }
 
+    func initNotifications() {
+        
+    }
+    
     @objc func enableDarkMode() {
         darkModeHandler?.enableDarkMode()
     }
