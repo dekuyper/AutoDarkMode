@@ -24,22 +24,22 @@ class AppMenu: NSMenu {
     }
     
     func constructMenu() {
-        constructNextEventTextItem()
-        constructStatusTextItem()
-        addItem(NSMenuItem.separator())
-        constructToggleItem()
-        addItem(NSMenuItem.separator())
-        addItem(NSMenuItem(title: "Quit Auto Dark Mode", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        nextEventTextItem()
+        statusTextItem()
+        separator()
+        toggleItem()
+        separator()
+        quitItem()
     }
 
-    func constructStatusTextItem() {
+    func statusTextItem() {
         let currentStatus = DarkMode.isEnabled ? "Enabled" : "Disabled"
         let statusText = "Dark Mode is \(currentStatus)"
         
         addItem(NSMenuItem(title: statusText, action: nil, keyEquivalent: ""))
     }
 
-    func constructNextEventTextItem() {
+    func nextEventTextItem() {
         let nextChange = getNextRunningTimerString()
         let nextStatus = DarkMode.isEnabled ? "Disabled" : "Enabled"
         let title = "Dark Mode will be \(nextStatus) at \(nextChange)"
@@ -47,12 +47,20 @@ class AppMenu: NSMenu {
         addItem(NSMenuItem(title: title, action: nil, keyEquivalent: ""))
     }
 
-    func constructToggleItem() {
+    func toggleItem() {
         let toggleItem = NSMenuItem(title: "Toggle Dark Mode", action: #selector(toggleDarkMode), keyEquivalent: "T")
         toggleItem.isEnabled = true
         toggleItem.target = self
         
         addItem(toggleItem)
+    }
+    
+    func separator() {
+        addItem(NSMenuItem.separator())
+    }
+
+    func quitItem() {
+        addItem(NSMenuItem(title: "Quit Auto Dark Mode", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
     }
 
     func getNextRunningTimerString() -> String {
