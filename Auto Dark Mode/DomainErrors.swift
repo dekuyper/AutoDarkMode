@@ -19,3 +19,7 @@ enum SolarError: Error {
 enum TimerError: Error {
     case onSet(message: String)
 }
+
+enum ContainerError: Error {
+    case noValueForKey(key: String)
+}

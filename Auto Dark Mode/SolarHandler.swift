@@ -36,7 +36,8 @@ struct DateHelper {
     }
 }
 
-class SolarHandler: NSObject, CLLocationManagerDelegate {
+class SolarHandler: AppManagedObject, AppManagerDelegate, CLLocationManagerDelegate {
+    
     let dateHelper = DateHelper()
     var solarRegistry: SolarRegistry?
     var delegate: SolarHandlerDelegate?
@@ -91,10 +92,24 @@ class SolarHandler: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    // Delegate calls
+    func appDidFinishLaunching(_ manager: AppManager) {
+        
+    }
+    
+    func appWillTerminate(_ manager: AppManager) {
+        
+    }
+    
+    func addManagerDelegate() {
+        manager.addDelegate(newElement: self)
+    }
 }
 
 protocol SolarHandlerDelegate {
     
     func solarHandlerFinishedLoading(_ solarHandler: SolarHandler)
+    
+    func setSolarHandlerDelegate()
     
 }

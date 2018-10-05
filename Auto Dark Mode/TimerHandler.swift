@@ -8,18 +8,21 @@
 
 import Foundation
 
-class TimerHandler: NSObject {
+class TimerHandler: AppManagedObject, AppManagerDelegate {
+    
     var switchModeTimers = [Timer]()
     var alertTimers = [Timer]()
     var nextRunningTimer: Timer?
-    var solarHelper: SolarHandler?
+    var solarHandler: SolarHandler {
+        get {
+            return (manager.container?.SolarHandler)!
+        }
+    }
     let dateHelper = DateHelper()
 
-    func initState(solar: SolarHandler) throws {
-        solarHelper = solar
-
-        scheduleSunriseTimer(sunriseDate: (solarHelper!.nextSunrise))
-        scheduleSunsetTimer(sunsetDate: (solarHelper!.nextSunset))
+    func initState() throws {
+        scheduleSunriseTimer(sunriseDate: (solarHandler.nextSunrise))
+        scheduleSunsetTimer(sunsetDate: (solarHandler.nextSunset))
         
         try updateNextRunningTimer()
     }
@@ -69,23 +72,23 @@ class TimerHandler: NSObject {
     }
     
     @objc func enableDarkMode() {
-        DarkMode.enable()
+        _ = DarkMode.enable()
     }
     
     @objc func disableDarkMode() {
-        DarkMode.disable()
+        _ = DarkMode.disable()
     }
 
-    func onAppDidFinishLaunching() {
+    func appDidFinishLaunching(_ manager: AppManager) {
         
     }
     
-    func onAppWillTerminate() {
+    func appWillTerminate(_ manager: AppManager) {
         invalidateTimers()
     }
     
-    deinit {
-        onAppWillTerminate()
+    func addManagerDelegate() {
+        manager.addDelegate(newElement: self)
     }
 
 }

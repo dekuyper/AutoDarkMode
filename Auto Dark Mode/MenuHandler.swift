@@ -7,15 +7,17 @@
 //
 
 import Foundation
-import Solar
-import CoreLocation
+import AppKit
 
 
 class AppMenu: NSMenu {
-    let timerHandler = TimerHandler()
+    var timerHandler: TimerHandler
 
-    override init(title: String) {
+    init(title: String, handler: TimerHandler) {
+        timerHandler = handler
+
         super.init(title: title)
+
         constructMenu()
     }
 
@@ -77,25 +79,28 @@ class AppMenu: NSMenu {
 
 }
 
-class AppMenuDelegate: NSObject, NSMenuDelegate {
-
+class MenuHandler: AppManagedObject, AppManagerDelegate, NSMenuDelegate {
     private lazy var statusItem: NSStatusItem = {
         return NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     }()
-
-    let menu = AppMenu()
-
-    func onAppDidFinishLaunching() {
-        statusItem.button!.image = NSImage(named:NSImage.Name("status-bar-icon"))
-        statusItem.isVisible = true
-        statusItem.menu = menu
-    }
 
     func menu(_ menu: NSMenu, update item: NSMenuItem, at index: Int, shouldCancel: Bool) -> Bool {
         return true
     }
 
-    func onAppWillTerminate() {
-
+    func appDidFinishLaunching(_ manager: AppManager) {
+        let menu = AppMenu(title: "Auto Dark Mode", handler: (manager.container?.TimerHandler)!)
+        statusItem.button!.image = NSImage(named:NSImage.Name("status-bar-icon"))
+        statusItem.isVisible = true
+        statusItem.menu = menu
     }
+    
+    func appWillTerminate(_ manager: AppManager) {
+        
+    }
+
+    func addManagerDelegate() {
+        manager.addDelegate(newElement: self)
+    }
+    
 }

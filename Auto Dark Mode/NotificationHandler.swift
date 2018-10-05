@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
+class NotificationHandler: AppManagedObject, AppManagerDelegate, NSUserNotificationCenterDelegate {
     
     func showAlert(title: String, message: String) {
         print(
@@ -20,5 +20,18 @@ class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
     func showDeniedAlert() {
         print("Location access denied")
     }
-
+    
+    // App Manager delegate calls
+    func appDidFinishLaunching(_ manager: AppManager) {
+        
+    }
+    
+    func appWillTerminate(_ manager: AppManager) {
+        
+    }
+    
+    func addManagerDelegate() {
+        manager.addDelegate(newElement: self)
+    }
+    
 }

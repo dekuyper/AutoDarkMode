@@ -54,8 +54,14 @@ struct DarkMode {
 
 }
 
-class DarkModeHandler: NSObject, SolarHandlerDelegate {
-    var solarHandler = SolarHandler()
+class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegate {
+
+    var solarHandler: SolarHandler {
+        get {
+            return (manager.container?.SolarHandler)!
+        }
+    }
+
     var delegate: DarkModeHandlerDelegate?
 
     func setDarkModeState(isDaytime: Bool) {
@@ -88,24 +94,30 @@ class DarkModeHandler: NSObject, SolarHandlerDelegate {
     }
     
     // CALLED
-    func solarHandlerFinishedLoading(_ solarHandler: SolarHandler) {
-        
-        setDarkModeState(isDaytime: (solarHandler.isDaytime))
-        
-    }
-
-    // INIT AND CLEANUP METHODS
-    func onAppDidFinishLaunching() {
-        solarHandler.delegate = self
+    func addManagerDelegate() {
+        manager.addDelegate(newElement: self)
     }
     
-    func onAppWillTerminate() {
+    func appDidFinishLaunching(_ manager: AppManager) {
+        
+    }
+    
+    func appWillTerminate(_ manager: AppManager) {
         
     }
 
-    deinit {
-        onAppWillTerminate()
+    func setSolarHandlerDelegate() {
+        
+        solarHandler.delegate = self
+        
     }
+
+    func solarHandlerFinishedLoading(_ solarHandler: SolarHandler) {
+        
+        setDarkModeState(isDaytime: solarHandler.isDaytime)
+        
+    }
+    
 }
 
 protocol DarkModeHandlerDelegate {

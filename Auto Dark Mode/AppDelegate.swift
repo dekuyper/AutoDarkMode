@@ -10,13 +10,18 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let appManager = AppManager()
 
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let appManager = AppManager()
+        
         appManager.appDidFinishLaunching()
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+        
+        appManager.appWillTerminate()
         
     }
 
