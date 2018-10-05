@@ -14,7 +14,7 @@ class MenuHandler: NSObject, NSMenuDelegate {
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let menu = NSMenu()
-    var darkModeHandler = DarkModeHandler()
+    let timerHandler = TimerHandler()
 
     func onAppDidFinishLaunching() {
         if let button = statusItem.button {
@@ -47,7 +47,7 @@ class MenuHandler: NSObject, NSMenuDelegate {
     }
     
     func getNextRunningTimerString() -> String {
-        guard let nextTimer = darkModeHandler.getNextRunningTimer() else { return "[Not Determined]"}
+        guard let nextTimer = timerHandler.getNextRunningTimer() else { return "--:--"}
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
@@ -59,10 +59,10 @@ class MenuHandler: NSObject, NSMenuDelegate {
     }
     
     @objc func enableDarkMode() {
-        darkModeHandler.enableDarkMode()
+        DarkMode.enable()
     }
     
     @objc func disableDarkMode() {
-        darkModeHandler.disableDarkMode()
+        DarkMode.disable()
     }
 }

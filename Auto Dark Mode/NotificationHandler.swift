@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NotificationHelper: NSObject, NSUserNotificationCenterDelegate {
+class NotificationHandler: NSObject, NSUserNotificationCenterDelegate {
     
     func showAlert(title: String, message: String) {
         print(
