@@ -11,6 +11,11 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     let appManager = AppManager()
+    //TODO: - Add context in events and use it to determine the next action
+    //      - Delegate calls for new events added to update the menu
+    //      - Subscribe to DarmModeHandler.didToggle() with TimerHandler to add the next event
+    //      - Register Timers to alert the user before the switching happens
+    //      - Add app to login (start-up)
 
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
