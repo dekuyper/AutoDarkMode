@@ -38,10 +38,17 @@ struct DarkMode {
         return DarkMode.toggle()
     }
 
-    static func toggle(_force: Bool? = nil) -> Bool {
- 
-        let flag = _force.map(String.init) ?? String(!isEnabled)
-        let script = command + flag
+    static func toggle() -> Bool {
+        return runScript(action: !isEnabled)
+    }
+    
+    static func toggle(withForce action: Bool) -> Bool {
+        return runScript(action: action)
+    }
+    
+    private static func runScript(action: Bool) -> Bool {
+        let script = command + String(action)
+
         do {
             _ = try AppleScript.run(myAppleScript: script)
         } catch {
@@ -71,20 +78,26 @@ class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegat
     func setDarkModeState(isDaytime: Bool) {
         switch isDaytime {
         case true:
-            disableDarkMode()
+            disable()
         case false:
-            enableDarkMode()
+            enable()
         }
     }
 
-    func enableDarkMode() {
+    func enable() {
         if DarkMode.enable() {
             didToggle()
         }
     }
 
-    func disableDarkMode() {
+    func disable() {
         if DarkMode.disable() {
+            didToggle()
+        }
+    }
+    
+    func toggle() {
+        if DarkMode.toggle() {
             didToggle()
         }
     }
@@ -115,7 +128,7 @@ class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegat
     }
 
     func solarHandler(didFinishLoading solarHandler: SolarHandler) {
-        print("IS Daytime: \(solarHandler.isDaytime)")
+        
         setDarkModeState(isDaytime: solarHandler.isDaytime)
         
     }

@@ -8,8 +8,9 @@
 
 import Foundation
 
-class TimerHandler: AppManagedObject, AppManagerDelegate {
+class TimerHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegate {
     
+    var delegates: [TimerHandlerDelegate] = [TimerHandlerDelegate]()
     var switchModeTimers = [Timer]()
     var alertTimers = [Timer]()
     var nextRunningTimer: Timer?
@@ -18,29 +19,33 @@ class TimerHandler: AppManagedObject, AppManagerDelegate {
             return (manager.container?.SolarHandler)!
         }
     }
+    var darkModeHandler: DarkModeHandler {
+        get {
+            return (manager.container?.DarkModeHandler)!
+        }
+    }
+    
     let dateHelper = DateHelper()
 
-    func initState() throws {
+    func initState() {
         scheduleSunriseTimer(sunriseDate: (solarHandler.nextSunrise))
         scheduleSunsetTimer(sunsetDate: (solarHandler.nextSunset))
         
-        try updateNextRunningTimer()
+        updateNextRunningTimer()
+        
+        //=================//
+        didFinishLoading()
     }
     
     func updateTimers() {
         
     }
     
-    func getNextRunningTimer() -> Timer? {
-        return nextRunningTimer
-    }
-    
-    func updateNextRunningTimer() throws {
-        let now = dateHelper.now
-        guard switchModeTimers.count > 0 else { throw TimerError.onSet(message: "switchModeTimers count is 0") }
-        
+    func updateNextRunningTimer() {
+        guard switchModeTimers.count > 0 else { return }
+
         let filteredTimers = switchModeTimers.sorted(by: {$0.fireDate < $1.fireDate})
-            .filter({ $0.fireDate > now })
+            .filter({ $0.fireDate > dateHelper.now })
         
         nextRunningTimer = filteredTimers.first!
     }
@@ -72,11 +77,29 @@ class TimerHandler: AppManagedObject, AppManagerDelegate {
     }
     
     @objc func enableDarkMode() {
-        _ = DarkMode.enable()
+        darkModeHandler.enable()
     }
     
     @objc func disableDarkMode() {
-        _ = DarkMode.disable()
+        darkModeHandler.disable()
+    }
+
+    // DELEGATE CALLS
+    func didFinishLoading() {
+        
+        delegates.forEach({delegate in
+            delegate.timerHandler(didFinishLoading: self)
+        })
+
+    }
+    
+    func addDelegate(newElement: TimerHandlerDelegate) {
+        delegates.append(newElement)
+    }
+
+    func solarHandler(didFinishLoading solarHandler: SolarHandler) {
+        initState()
+        
     }
 
     func appDidFinishLaunching(_ manager: AppManager) {
@@ -89,6 +112,7 @@ class TimerHandler: AppManagedObject, AppManagerDelegate {
     
     func registerToDelegateCallers() {
         manager.addDelegate(newElement: self)
+        solarHandler.addDelegate(newElement: self)
     }
 
 }

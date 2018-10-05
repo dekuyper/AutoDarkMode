@@ -124,3 +124,9 @@ protocol SolarHandlerDelegate: AppDelegateRegistrant {
     func solarHandler(didFinishLoading solarHandler: SolarHandler)
     
 }
+
+protocol TimerHandlerDelegate: AppDelegateRegistrant {
+    
+    func timerHandler(didFinishLoading timerHandler: TimerHandler)
+    
+}

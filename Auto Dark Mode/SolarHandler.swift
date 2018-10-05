@@ -49,7 +49,6 @@ class SolarHandler: AppManagedObject, AppManagerDelegate, AppLocationManagerDele
 
     func build(location: CLLocation) {
         let coordinate = location.coordinate
-        print("New location coordinate: \(coordinate)")
         
         let solarToday = Solar(for: dateHelper.now, coordinate: coordinate)
         let solarTommorow = Solar(for: dateHelper.tomorrow, coordinate: coordinate)
