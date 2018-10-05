@@ -11,7 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var darkModeHandler = DarkModeHandler()
-    var menuHandler = MenuHandler()
+    var menuHandler = AppMenuDelegate()
     var timerHandler = TimerHandler()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
