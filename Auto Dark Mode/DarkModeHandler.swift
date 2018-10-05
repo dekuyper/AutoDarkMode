@@ -63,7 +63,6 @@ struct DarkMode {
 }
 
 class DarkModeHandler: NSObject, CLLocationManagerDelegate, NSMenuDelegate {
-    let initialDarkMode = DarkMode.isEnabled
     let locationManager = CLLocationManager()
     let notificationHandler = NotificationHandler()
     let dateHelper = DateHelper()
@@ -160,18 +159,12 @@ class DarkModeHandler: NSObject, CLLocationManagerDelegate, NSMenuDelegate {
     }
 
     // INIT AND CLEANUP METHODS
-    func restoreInitialMode() {
-        guard DarkMode.isEnabled != initialDarkMode else { return }
-        _ = DarkMode.toggle()
-    }
-
     func onAppDidFinishLaunching() {
         startReceivingLocationChanges()
     }
     
     func onAppWillTerminate() {
         locationManager.stopUpdatingLocation()
-        restoreInitialMode()
     }
 
     deinit {
