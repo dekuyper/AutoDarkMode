@@ -80,6 +80,7 @@ class AppMenu: NSMenu {
 }
 
 class MenuHandler: AppManagedObject, AppManagerDelegate, NSMenuDelegate {
+    
     private lazy var statusItem: NSStatusItem = {
         return NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     }()
@@ -99,7 +100,7 @@ class MenuHandler: AppManagedObject, AppManagerDelegate, NSMenuDelegate {
         
     }
 
-    func addManagerDelegate() {
+    func registerToDelegateCallers() {
         manager.addDelegate(newElement: self)
     }
     

@@ -36,15 +36,20 @@ struct DateHelper {
     }
 }
 
-class SolarHandler: AppManagedObject, AppManagerDelegate, CLLocationManagerDelegate {
+class SolarHandler: AppManagedObject, AppManagerDelegate, AppLocationManagerDelegate, AppDelegateRegistrant {
     
     let dateHelper = DateHelper()
     var solarRegistry: SolarRegistry?
-    var delegate: SolarHandlerDelegate?
+    var appLocationManager: AppLocationManager {
+        get {
+            return (manager.container?.AppLocationManager)!
+        }
+    }
+    var delegates = [SolarHandlerDelegate]()
 
-    func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
-        let lastLocation = locations.last!
-        let coordinate = lastLocation.coordinate
+    func build(location: CLLocation) {
+        let coordinate = location.coordinate
+        print("New location coordinate: \(coordinate)")
         
         let solarToday = Solar(for: dateHelper.now, coordinate: coordinate)
         let solarTommorow = Solar(for: dateHelper.tomorrow, coordinate: coordinate)
@@ -52,13 +57,11 @@ class SolarHandler: AppManagedObject, AppManagerDelegate, CLLocationManagerDeleg
         solarRegistry = SolarRegistry(today: solarToday!, tomorrow: solarTommorow!)
         
         guard solarRegistry != nil else { return }
-        finishedLoading()
+        didFinishLoading()
     }
     
-    func finishedLoading() {
-        
-        delegate?.solarHandlerFinishedLoading(self)
-        
+    func addDelegate(newElement: SolarHandlerDelegate) {
+        delegates.append(newElement)
     }
     
     var isDaytime: Bool {
@@ -93,6 +96,21 @@ class SolarHandler: AppManagedObject, AppManagerDelegate, CLLocationManagerDeleg
     }
     
     // Delegate calls
+    // Own
+    func didFinishLoading() {
+        
+        delegates.forEach({delegate in
+            delegate.solarHandler(didFinishLoading: self)
+        })
+        
+    }
+    
+    func registerToDelegateCallers() {
+        // App Location Manager
+        manager.container?.AppLocationManager.addDelegate(newDelegate: self)
+    }
+
+    // Called
     func appDidFinishLaunching(_ manager: AppManager) {
         
     }
@@ -104,12 +122,9 @@ class SolarHandler: AppManagedObject, AppManagerDelegate, CLLocationManagerDeleg
     func addManagerDelegate() {
         manager.addDelegate(newElement: self)
     }
-}
 
-protocol SolarHandlerDelegate {
-    
-    func solarHandlerFinishedLoading(_ solarHandler: SolarHandler)
-    
-    func setSolarHandlerDelegate()
-    
+    func appLocationManager(didUpdateLocation newLocation: CLLocation) {
+        build(location: newLocation)
+    }
+
 }

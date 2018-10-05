@@ -87,7 +87,7 @@ class TimerHandler: AppManagedObject, AppManagerDelegate {
         invalidateTimers()
     }
     
-    func addManagerDelegate() {
+    func registerToDelegateCallers() {
         manager.addDelegate(newElement: self)
     }
 

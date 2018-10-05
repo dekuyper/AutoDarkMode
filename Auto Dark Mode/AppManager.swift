@@ -7,17 +7,7 @@
 //
 
 import Foundation
-
-
-protocol AppManagerDelegate {
-    
-    func appDidFinishLaunching(_ manager: AppManager)
-    
-    func appWillTerminate(_ manager: AppManager)
-    
-    func addManagerDelegate()
-
-}
+import CoreLocation
 
 protocol ManagedObject {
     
@@ -48,13 +38,9 @@ struct AppContainer {
 }
 
 class AppManager: NSObject {
-    private var delegates: [AppManagerDelegate]
+    private var delegates: [AppManagerDelegate] = [AppManagerDelegate]()
     var container: AppContainer?
-    
-    override init() {
-        delegates = [AppManagerDelegate]()
-    }
-    
+
     func addDelegate(newElement: AppManagerDelegate) {
         delegates.append(newElement)
     }
@@ -70,12 +56,12 @@ class AppManager: NSObject {
             TimerHandler: TimerHandler(appManager: self)
         )
         
-        container?.AppLocationManager.addManagerDelegate()
-        container?.SolarHandler.addManagerDelegate()
-        container?.MenuHandler.addManagerDelegate()
-        container?.TimerHandler.addManagerDelegate()
-        container?.DarkModeHandler.addManagerDelegate()
-        container?.NotificationHandler.addManagerDelegate()
+        container?.AppLocationManager.registerToDelegateCallers()
+        container?.SolarHandler.registerToDelegateCallers()
+        container?.MenuHandler.registerToDelegateCallers()
+        container?.TimerHandler.registerToDelegateCallers()
+        container?.DarkModeHandler.registerToDelegateCallers()
+        container?.NotificationHandler.registerToDelegateCallers()
         
         delegateAppDidFinishLaunching()
     }
@@ -102,4 +88,39 @@ class AppManager: NSObject {
         
     }
 
+}
+
+
+// Delegate Protocols
+
+protocol AppDelegateRegistrant {
+    
+    func registerToDelegateCallers()
+
+}
+
+protocol AppManagerDelegate: AppDelegateRegistrant {
+    
+    func appDidFinishLaunching(_ manager: AppManager)
+    
+    func appWillTerminate(_ manager: AppManager)
+    
+}
+
+protocol AppLocationManagerDelegate: AppDelegateRegistrant {
+    
+    func appLocationManager(didUpdateLocation newLocation: CLLocation)
+    
+}
+
+protocol DarkModeHandlerDelegate: AppDelegateRegistrant {
+    
+    func didToggleDarkMode(_ newValue: Bool)
+    
+}
+
+protocol SolarHandlerDelegate: AppDelegateRegistrant {
+    
+    func solarHandler(didFinishLoading solarHandler: SolarHandler)
+    
 }

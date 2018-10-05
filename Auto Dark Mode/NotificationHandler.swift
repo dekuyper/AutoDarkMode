@@ -9,7 +9,7 @@
 import Foundation
 
 class NotificationHandler: AppManagedObject, AppManagerDelegate, NSUserNotificationCenterDelegate {
-    
+
     func showAlert(title: String, message: String) {
         print(
             "Title: \(title)",
@@ -30,7 +30,7 @@ class NotificationHandler: AppManagedObject, AppManagerDelegate, NSUserNotificat
         
     }
     
-    func addManagerDelegate() {
+    func registerToDelegateCallers() {
         manager.addDelegate(newElement: self)
     }
     

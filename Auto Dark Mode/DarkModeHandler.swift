@@ -62,7 +62,11 @@ class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegat
         }
     }
 
-    var delegate: DarkModeHandlerDelegate?
+    var delegates: [DarkModeHandlerDelegate] = [DarkModeHandlerDelegate]()
+
+    func addDelegate(newElement: DarkModeHandlerDelegate) {
+        delegates.append(newElement)
+    }
 
     func setDarkModeState(isDaytime: Bool) {
         switch isDaytime {
@@ -88,14 +92,18 @@ class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegat
     // DELEGATE METHODS
     // OWN
     func didToggle() {
+        let newValue = DarkMode.isEnabled
         
-        delegate?.didToggleDarkMode(DarkMode.isEnabled)
+        delegates.forEach({delegate in
+            delegate.didToggleDarkMode(newValue)
+        })
         
     }
     
     // CALLED
-    func addManagerDelegate() {
+    func registerToDelegateCallers() {
         manager.addDelegate(newElement: self)
+        solarHandler.addDelegate(newElement: self)
     }
     
     func appDidFinishLaunching(_ manager: AppManager) {
@@ -106,22 +114,10 @@ class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegat
         
     }
 
-    func setSolarHandlerDelegate() {
-        
-        solarHandler.delegate = self
-        
-    }
-
-    func solarHandlerFinishedLoading(_ solarHandler: SolarHandler) {
-        
+    func solarHandler(didFinishLoading solarHandler: SolarHandler) {
+        print("IS Daytime: \(solarHandler.isDaytime)")
         setDarkModeState(isDaytime: solarHandler.isDaytime)
         
     }
-    
-}
-
-protocol DarkModeHandlerDelegate {
-    
-    func didToggleDarkMode(_ newValue: Bool)
     
 }
