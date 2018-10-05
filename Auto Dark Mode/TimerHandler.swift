@@ -12,14 +12,14 @@ class TimerHandler: NSObject {
     var switchModeTimers = [Timer]()
     var alertTimers = [Timer]()
     var nextRunningTimer: Timer?
-    var solarHelper: SolarHelper?
+    var solarHelper: SolarHandler?
     let dateHelper = DateHelper()
 
-    func initState(solar: SolarHelper) throws {
+    func initState(solar: SolarHandler) throws {
         solarHelper = solar
 
-        addSunriseTimer(sunriseDate: (solarHelper!.nextSunrise))
-        addSunsetTimer(sunsetDate: (solarHelper!.nextSunset))
+        scheduleSunriseTimer(sunriseDate: (solarHelper!.nextSunrise))
+        scheduleSunsetTimer(sunsetDate: (solarHelper!.nextSunset))
         
         try updateNextRunningTimer()
     }
@@ -42,14 +42,16 @@ class TimerHandler: NSObject {
         nextRunningTimer = filteredTimers.first!
     }
     
-    func addSunriseTimer(sunriseDate: Date) {
+    func scheduleSunriseTimer(sunriseDate: Date) {
         let timer = Timer(fireAt: sunriseDate, interval: 0, target: self, selector: #selector(disableDarkMode), userInfo: nil, repeats: false)
+        timer.tolerance = 30
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
         switchModeTimers.append(timer)
     }
     
-    func addSunsetTimer(sunsetDate: Date) {
+    func scheduleSunsetTimer(sunsetDate: Date) {
         let timer = Timer(fireAt: sunsetDate, interval: 0, target: self, selector: #selector(enableDarkMode), userInfo: nil, repeats: false)
+        timer.tolerance = 30
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
         switchModeTimers.append(timer)
     }

@@ -7,13 +7,7 @@
 //
 
 import Foundation
-import Solar
 import CoreLocation
-
-struct SolarRegistry {
-    var today: Solar
-    var tomorrow: Solar
-}
 
 struct DarkMode {
     private static let command = "tell application id \"com.apple.systemevents\" to tell appearance preferences to set dark mode to "
@@ -26,29 +20,26 @@ struct DarkMode {
         return !isEnabled
     }
     
-    static func enable() {
+    static func enable() -> Bool {
         if isEnabled {
             print("Dark mode already enabled")
-            return
+            return false
         }
 
-        if DarkMode.toggle() {
-            print("Enabled DarkMode")
-        }
+        return DarkMode.toggle()
     }
     
-    static func disable() {
+    static func disable() -> Bool {
         if isDisabled {
             print("Dark mode already disabled")
-            return
+            return false
         }
 
-        if DarkMode.toggle() {
-            print("Disabled Dark Mode")
-        }
+        return DarkMode.toggle()
     }
 
     static func toggle(_force: Bool? = nil) -> Bool {
+ 
         let flag = _force.map(String.init) ?? String(!isEnabled)
         let script = command + flag
         do {
@@ -60,114 +51,65 @@ struct DarkMode {
         
         return true
     }
+
 }
 
-class DarkModeHandler: NSObject, CLLocationManagerDelegate, NSMenuDelegate {
-    let locationManager = CLLocationManager()
-    let notificationHandler = NotificationHandler()
-    let dateHelper = DateHelper()
-    var timerHandler = TimerHandler()
-    var lastLocation: CLLocation?
-    var solarHelper: SolarHelper?
-    
-    func initSolar() -> Bool {
-        if let coordinate = lastLocation?.coordinate {
-            let solarToday = Solar(for: dateHelper.now, coordinate: coordinate)
-            let solarTommorow = Solar(for: dateHelper.tomorrow, coordinate: coordinate)
-            let solarRegistry = SolarRegistry(today: solarToday!, tomorrow: solarTommorow!)
-            solarHelper = SolarHelper(solarRegistry: solarRegistry, dateHelper: dateHelper)
+class DarkModeHandler: NSObject, SolarHandlerDelegate {
+    var solarHandler = SolarHandler()
+    var delegate: DarkModeHandlerDelegate?
 
-            return true
-        }
-        
-        return false
-    }
-
-    func initState() -> Bool {
-        setDarkModeState(isDaytime: (solarHelper?.isDaytime)!)
-
-        do {
-            try timerHandler.initState(solar: solarHelper!)
-            return true
-        } catch let error as SolarError {
-            print("Error: \(error.localizedDescription)")
-        } catch let error as TimerError {
-            print("Error: \(error.localizedDescription)")
-        } catch {
-            print("Generic internal error while trying to set timers")
-        }
-
-        return false
-    }
-    
     func setDarkModeState(isDaytime: Bool) {
         switch isDaytime {
         case true:
-            DarkMode.disable()
+            disableDarkMode()
         case false:
-            DarkMode.enable()
+            enableDarkMode()
         }
     }
 
-    
-    // LOCATION SPECIFIC METHODS
-    func configLocationManager() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        locationManager.distanceFilter = 1000.0  // In meters.
-        locationManager.delegate = self
-    }
-
-    func startReceivingLocationChanges() {
-        let authorizationStatus = CLLocationManager.authorizationStatus()
-        handleLocationAuthorizationStatus(status: authorizationStatus)
-    }
-    
-    func handleLocationAuthorizationStatus(status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined, .authorizedAlways:
-            configLocationManager()
-            locationManager.startUpdatingLocation()
-        case .restricted:
-            notificationHandler.showAlert(
-                title: "Access to Location Services is Restricted",
-                message: "Parental Controls or a system administrator may be limiting your access to location services."
-            )
-        case .denied:
-            print("I'm sorry - I can't show location. User has not authorized it")
-            notificationHandler.showDeniedAlert()
+    func enableDarkMode() {
+        if DarkMode.enable() {
+            didToggle()
         }
     }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        handleLocationAuthorizationStatus(status: status)
+
+    func disableDarkMode() {
+        if DarkMode.disable() {
+            didToggle()
+        }
     }
-    
-    func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
-        lastLocation = locations.last
-        guard initSolar() else { return }
+
+    // DELEGATE METHODS
+    // OWN
+    func didToggle() {
         
-        if initState() {
-            manager.stopUpdatingLocation()
-        }
+        delegate?.didToggleDarkMode(DarkMode.isEnabled)
+        
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        notificationHandler.showAlert(
-            title: "Location Access Failure",
-            message: "App could not access locations. Loation services may be unavailable or are turned off. Error code: \(error)"
-        )
+    // CALLED
+    func solarHandlerFinishedLoading(_ solarHandler: SolarHandler) {
+        
+        setDarkModeState(isDaytime: (solarHandler.isDaytime))
+        
     }
 
     // INIT AND CLEANUP METHODS
     func onAppDidFinishLaunching() {
-        startReceivingLocationChanges()
+        solarHandler.delegate = self
     }
     
     func onAppWillTerminate() {
-        locationManager.stopUpdatingLocation()
+        
     }
 
     deinit {
         onAppWillTerminate()
     }
+}
+
+protocol DarkModeHandlerDelegate {
+    
+    func didToggleDarkMode(_ newValue: Bool)
+    
 }

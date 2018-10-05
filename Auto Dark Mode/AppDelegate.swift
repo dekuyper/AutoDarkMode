@@ -10,20 +10,14 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var darkModeHandler = DarkModeHandler()
-    var menuHandler = AppMenuDelegate()
-    var timerHandler = TimerHandler()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        menuHandler.onAppDidFinishLaunching()
-        darkModeHandler.onAppDidFinishLaunching()
-        timerHandler.onAppDidFinishLaunching()
+        let appManager = AppManager()
+        appManager.appDidFinishLaunching()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        menuHandler.onAppWillTerminate()
-        darkModeHandler.onAppWillTerminate()
-        timerHandler.onAppWillTerminate()
+        
     }
 
 }
