@@ -12,38 +12,48 @@ import CoreLocation
 
 class MenuHandler: NSObject, NSMenuDelegate {
     
-    let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
-    let menu = NSMenu()
+    private lazy var statusItem: NSStatusItem = {
+        return NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    }()
     let timerHandler = TimerHandler()
 
     func onAppDidFinishLaunching() {
-        if let button = statusItem.button {
-            button.image = NSImage(named:NSImage.Name("status-bar-icon"))
-        }
+        statusItem.button!.image = NSImage(named:NSImage.Name("status-bar-icon"))
+        statusItem.isVisible = true
+
         
-        constructMenu(statusItem: statusItem, menu: menu)
+        constructMenu(statusItem: statusItem)
     }
     
     func menu(_ menu: NSMenu, update item: NSMenuItem, at index: Int, shouldCancel: Bool) -> Bool {
         return true
     }
     
-    func constructMenu(statusItem: NSStatusItem, menu: NSMenu) {
-        let statusMenuItem = getStatusMenuItem()
-        menu.addItem(statusMenuItem)
-        menu.addItem(NSMenuItem(title: "Enable Dark Mode", action: #selector(enableDarkMode), keyEquivalent: "D"))
-        menu.addItem(NSMenuItem(title: "Disable Dark Mode", action: #selector(disableDarkMode), keyEquivalent: "d"))
+    func constructMenu(statusItem: NSStatusItem) {
+        
+        let menu = NSMenu(title: "Auto Dark Mode")
+        
+        let nextEventText = NSMenuItem(title: getStatusText(), action: nil, keyEquivalent: "")
+        let currentStatus = DarkMode.isEnabled ? "Enabled" : "Disabled"
+        let statusText = "Dark Mode is \(currentStatus)"
+        let toggleItem = NSMenuItem(title: "Toggle Dark Mode", action: #selector(toggleDarkMode), keyEquivalent: "T")
+        toggleItem.isEnabled = true
+        toggleItem.target = self
+        menu.addItem(nextEventText)
+        menu.addItem(NSMenuItem(title: statusText, action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(toggleItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit Auto Dark Mode", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         statusItem.menu = menu
     }
     
-    func getStatusMenuItem() -> NSMenuItem {
+    func getStatusText() -> String {
         let nextChange = getNextRunningTimerString()
         let nextStatus = DarkMode.isEnabled ? "Disabled" : "Enabled"
         let title = "Dark Mode will be \(nextStatus) at \(nextChange)"
-        return NSMenuItem(title: title, action: nil, keyEquivalent: "")
+        return title
     }
     
     func getNextRunningTimerString() -> String {
@@ -58,11 +68,7 @@ class MenuHandler: NSObject, NSMenuDelegate {
 
     }
     
-    @objc func enableDarkMode() {
-        DarkMode.enable()
-    }
-    
-    @objc func disableDarkMode() {
-        DarkMode.disable()
+    @objc func toggleDarkMode() {
+        _ = DarkMode.toggle()
     }
 }
