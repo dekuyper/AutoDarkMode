@@ -46,6 +46,10 @@ class AppManager: NSObject {
     }
     
     func appDidFinishLaunching() {
+        if !SystemEvents.isActive {
+            print("TODO: Activate system events app")
+            return
+        }
         
         container = AppContainer(
             AppLocationManager: AppLocationManager(appManager: self),
