@@ -30,8 +30,8 @@ class AppMenu: NSMenu {
     func constructMenu() {
         appName()
         separator()
-        nextEventTextItem()
         statusTextItem()
+        nextEventTextItem()
         separator()
         toggleItem()
         separator()
@@ -44,7 +44,7 @@ class AppMenu: NSMenu {
     
     func statusTextItem() {
         let currentStatus = DarkMode.isEnabled ? "Enabled" : "Disabled"
-        let statusText = "Dark Mode is \(currentStatus)"
+        let statusText = "Current status:  \(currentStatus)"
         let menuItem = NSMenuItem(title: statusText, action: nil, keyEquivalent: "")
         menuItem.tag = 2
 
@@ -66,7 +66,8 @@ class AppMenu: NSMenu {
     }
 
     func toggleItem() {
-        let toggleItem = NSMenuItem(title: "Toggle Dark Mode", action: #selector(toggleDarkMode), keyEquivalent: "T")
+        let nextAction = DarkMode.isEnabled ? "Disable" : "Enable"
+        let toggleItem = NSMenuItem(title: "\(nextAction) Dark Mode", action: #selector(toggleDarkMode), keyEquivalent: "T")
         toggleItem.tag = 4
         toggleItem.isEnabled = true
         toggleItem.target = self
@@ -86,7 +87,7 @@ class AppMenu: NSMenu {
         guard let nextTimer = timer.nextRunningTimer else { return "--:--"}
         print(nextTimer.fireDate)
         let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatterPrint.dateFormat = "yyyy-MM-dd HH:mm"
         
         return dateFormatterPrint.string(from: nextTimer.fireDate)
     }

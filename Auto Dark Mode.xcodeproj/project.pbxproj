@@ -11,6 +11,7 @@
 		0E77DB8C2166C33500C0E348 /* DomainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E77DB8B2166C33500C0E348 /* DomainErrors.swift */; };
 		0E77DB8E2166C38000C0E348 /* SolarHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E77DB8D2166C38000C0E348 /* SolarHandler.swift */; };
 		0E77DB922166D18E00C0E348 /* TimerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E77DB912166D18E00C0E348 /* TimerHandler.swift */; };
+		0E89B1AB216831170007E7A5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E89B1AA216831170007E7A5 /* ServiceManagement.framework */; };
 		0E9A26152163586F00547206 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9A26142163586F00547206 /* AppDelegate.swift */; };
 		0E9A26192163586F00547206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A26182163586F00547206 /* Assets.xcassets */; };
 		0E9A261C2163586F00547206 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9A261A2163586F00547206 /* Main.storyboard */; };
@@ -23,11 +24,25 @@
 		9B66C4CE29CC5DEACEB9F4DD /* Pods_Auto_Dark_Mode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DA017434FB93897258B2FA /* Pods_Auto_Dark_Mode.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0E89B1A82168301B0007E7A5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0E77DB8921666C9500C0E348 /* MenuHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHandler.swift; sourceTree = "<group>"; };
 		0E77DB8B2166C33500C0E348 /* DomainErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainErrors.swift; sourceTree = "<group>"; };
 		0E77DB8D2166C38000C0E348 /* SolarHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarHandler.swift; sourceTree = "<group>"; };
 		0E77DB912166D18E00C0E348 /* TimerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerHandler.swift; sourceTree = "<group>"; };
+		0E89B19821682E3C0007E7A5 /* Auto Dark Mode LauncherApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Auto Dark Mode LauncherApplication.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E89B1AA216831170007E7A5 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		0E9A26112163586F00547206 /* Auto Dark Mode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Auto Dark Mode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E9A26142163586F00547206 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E9A26182163586F00547206 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,10 +62,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0E89B19521682E3C0007E7A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E9A260E2163586F00547206 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E89B1AB216831170007E7A5 /* ServiceManagement.framework in Frameworks */,
 				9B66C4CE29CC5DEACEB9F4DD /* Pods_Auto_Dark_Mode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				0E9A26112163586F00547206 /* Auto Dark Mode.app */,
+				0E89B19821682E3C0007E7A5 /* Auto Dark Mode LauncherApplication.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,6 +135,7 @@
 		E1D6CD2A5CBA6DD208E895F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E89B1AA216831170007E7A5 /* ServiceManagement.framework */,
 				59DA017434FB93897258B2FA /* Pods_Auto_Dark_Mode.framework */,
 			);
 			name = Frameworks;
@@ -119,6 +144,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0E89B19721682E3C0007E7A5 /* Auto Dark Mode LauncherApplication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E89B1A521682E3D0007E7A5 /* Build configuration list for PBXNativeTarget "Auto Dark Mode LauncherApplication" */;
+			buildPhases = (
+				0E89B19421682E3C0007E7A5 /* Sources */,
+				0E89B19521682E3C0007E7A5 /* Frameworks */,
+				0E89B19621682E3C0007E7A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Auto Dark Mode LauncherApplication";
+			productName = "Auto Dark Mode LauncherApplication";
+			productReference = 0E89B19821682E3C0007E7A5 /* Auto Dark Mode LauncherApplication.app */;
+			productType = "com.apple.product-type.application";
+		};
 		0E9A26102163586F00547206 /* Auto Dark Mode */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0E9A26212163586F00547206 /* Build configuration list for PBXNativeTarget "Auto Dark Mode" */;
@@ -128,6 +170,7 @@
 				0E9A260E2163586F00547206 /* Frameworks */,
 				0E9A260F2163586F00547206 /* Resources */,
 				726EB347AB308B1EE9F445A4 /* [CP] Embed Pods Frameworks */,
+				0E89B1A82168301B0007E7A5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -148,6 +191,9 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "OakGrove Software";
 				TargetAttributes = {
+					0E89B19721682E3C0007E7A5 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					0E9A26102163586F00547206 = {
 						CreatedOnToolsVersion = 10.0;
 						SystemCapabilities = {
@@ -172,11 +218,19 @@
 			projectRoot = "";
 			targets = (
 				0E9A26102163586F00547206 /* Auto Dark Mode */,
+				0E89B19721682E3C0007E7A5 /* Auto Dark Mode LauncherApplication */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0E89B19621682E3C0007E7A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E9A260F2163586F00547206 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,6 +291,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0E89B19421682E3C0007E7A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E9A260D2163586F00547206 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,6 +329,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0E89B1A621682E3D0007E7A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Auto Dark Mode LauncherApplication/Auto_Dark_Mode_LauncherApplication.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 23Y28PW4VV;
+				INFOPLIST_FILE = "Auto Dark Mode LauncherApplication/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "oakgrove.Auto-Dark-Mode-LauncherApplication";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		0E89B1A721682E3D0007E7A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Auto Dark Mode LauncherApplication/Auto_Dark_Mode_LauncherApplication.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 23Y28PW4VV;
+				INFOPLIST_FILE = "Auto Dark Mode LauncherApplication/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "oakgrove.Auto-Dark-Mode-LauncherApplication";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 		0E9A261F2163586F00547206 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -387,9 +488,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A3EF3B79BE9BA05D9DF628C /* Pods-Auto Dark Mode.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Auto Dark Mode/Auto Dark Mode.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = 23Y28PW4VV;
 				INFOPLIST_FILE = "Auto Dark Mode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -398,6 +502,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "oakgrove.Auto-Dark-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -406,9 +511,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A254B6F8E992B4195AA39F1 /* Pods-Auto Dark Mode.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Auto Dark Mode/Auto Dark Mode.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = 23Y28PW4VV;
 				INFOPLIST_FILE = "Auto Dark Mode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -417,6 +525,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "oakgrove.Auto-Dark-Mode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -424,6 +533,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0E89B1A521682E3D0007E7A5 /* Build configuration list for PBXNativeTarget "Auto Dark Mode LauncherApplication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E89B1A621682E3D0007E7A5 /* Debug */,
+				0E89B1A721682E3D0007E7A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0E9A260C2163586F00547206 /* Build configuration list for PBXProject "Auto Dark Mode" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
