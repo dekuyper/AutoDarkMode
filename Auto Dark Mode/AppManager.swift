@@ -119,7 +119,7 @@ protocol AppLocationManagerDelegate: AppDelegateRegistrant {
 
 protocol DarkModeHandlerDelegate: AppDelegateRegistrant {
     
-    func didToggleDarkMode(_ newValue: Bool)
+    func darkModeHandler(didToggleDarkMode newValue: Bool)
     
 }
 

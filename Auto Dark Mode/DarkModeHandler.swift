@@ -108,7 +108,7 @@ class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegat
         let newValue = DarkMode.isEnabled
         
         delegates.forEach({delegate in
-            delegate.didToggleDarkMode(newValue)
+            delegate.darkModeHandler(didToggleDarkMode: newValue)
         })
         
     }

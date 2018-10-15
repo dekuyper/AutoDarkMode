@@ -13,7 +13,23 @@ import AppKit
 class AppMenu: NSMenu {
     var timer: TimerHandler
     var darkMode: DarkModeHandler
-
+    
+    var statusTitle: String {
+        get {
+            let currentStatus = DarkMode.isEnabled ? "Enabled" : "Disabled"
+            
+            return "Current status:  \(currentStatus)"
+        }
+    }
+    
+    var toggleTitle: String {
+        get {
+            let nextAction = DarkMode.isEnabled ? "Disable" : "Enable"
+            
+            return "\(nextAction) Dark Mode"
+        }
+    }
+    
     init(title: String, timerHandler: TimerHandler, darkModeHandler: DarkModeHandler) {
         timer = timerHandler
         darkMode = darkModeHandler
@@ -28,30 +44,28 @@ class AppMenu: NSMenu {
     }
     
     func constructMenu() {
-        appName()
+        addAppName()
         separator()
-        statusTextItem()
-        nextEventTextItem()
+        addCurrentStatus()
+        addNextEventItem()
         separator()
-        toggleItem()
+        addToggleItem()
         separator()
-        quitItem()
+        addQuitItem()
     }
 
-    func appName() {
+    func addAppName() {
         addItem(NSMenuItem(title: "Auto Dark Mode", action: nil, keyEquivalent: ""))
     }
     
-    func statusTextItem() {
-        let currentStatus = DarkMode.isEnabled ? "Enabled" : "Disabled"
-        let statusText = "Current status:  \(currentStatus)"
-        let menuItem = NSMenuItem(title: statusText, action: nil, keyEquivalent: "")
+    func addCurrentStatus() {
+        let menuItem = NSMenuItem(title: statusTitle, action: nil, keyEquivalent: "")
         menuItem.tag = 2
 
         addItem(menuItem)
     }
-
-    func nextEventTextItem() {
+    
+    func addNextEventItem() {
         let title = nextEventTitle()
         let menuItem = NSMenuItem(title: title, action: nil, keyEquivalent: "")
         menuItem.tag = 3
@@ -59,15 +73,14 @@ class AppMenu: NSMenu {
         addItem(menuItem)
     }
 
-    func nextEventTitle() -> String{
-        let nextChange = getNextRunningTimerString()
+    func nextEventTitle() -> String {
+        let nextChange = getNextRunningTimer()
         let nextStatus = DarkMode.isEnabled ? "Disabled" : "Enabled"
         return "Dark Mode will be \(nextStatus) at \(nextChange)"
     }
 
-    func toggleItem() {
-        let nextAction = DarkMode.isEnabled ? "Disable" : "Enable"
-        let toggleItem = NSMenuItem(title: "\(nextAction) Dark Mode", action: #selector(toggleDarkMode), keyEquivalent: "T")
+    func addToggleItem() {
+        let toggleItem = NSMenuItem(title: toggleTitle, action: #selector(toggleDarkMode), keyEquivalent: "T")
         toggleItem.tag = 4
         toggleItem.isEnabled = true
         toggleItem.target = self
@@ -79,13 +92,13 @@ class AppMenu: NSMenu {
         addItem(NSMenuItem.separator())
     }
 
-    func quitItem() {
+    func addQuitItem() {
         addItem(NSMenuItem(title: "Quit Auto Dark Mode", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
     }
 
-    func getNextRunningTimerString() -> String {
+    func getNextRunningTimer() -> String {
         guard let nextTimer = timer.nextRunningTimer else { return "--:--"}
-        print(nextTimer.fireDate)
+
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd HH:mm"
         
@@ -98,35 +111,57 @@ class AppMenu: NSMenu {
 
 }
 
-class MenuHandler: AppManagedObject, AppManagerDelegate, TimerHandlerDelegate, NSMenuDelegate {
+class MenuHandler: AppManagedObject,
+                   AppManagerDelegate,
+                   TimerHandlerDelegate,
+                   DarkModeHandlerDelegate,
+                   NSMenuDelegate
+{
 
     private lazy var statusItem: NSStatusItem = {
         return NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     }()
     
     var menu: AppMenu?
+    
     var timerHandler: TimerHandler {
         get {
             return (manager.container?.TimerHandler)!
         }
     }
+    
     var darkModeHandler: DarkModeHandler {
         get {
             return (manager.container?.DarkModeHandler)!
         }
     }
-    
-    // DELEGATE CALLS
-    func timerHandler(didFinishLoading timerHandler: TimerHandler) {
-        print("TimerHandlerDelegate Fires")
-        updateNextEventTextItem()
-    }
-    
+
     func updateNextEventTextItem() {
         let menuItem = menu!.item(withTag: 3)
         menuItem!.title = (menu?.nextEventTitle())!
     }
+    
+    func updateStatusTextItem() {
+        let menuItem = menu!.item(withTag: 2)
+        menuItem?.title = (menu?.statusTitle)!
+    }
+    
+    func updateToggleItem() {
+        let menuItem = menu!.item(withTag: 4)
+        menuItem?.title = (menu?.toggleTitle)!
+    }
 
+    // DELEGATE CALLS
+    func timerHandler(didFinishLoading timerHandler: TimerHandler) {
+        updateNextEventTextItem()
+    }
+    
+    func darkModeHandler(didToggleDarkMode newValue: Bool) {
+        updateStatusTextItem()
+        updateToggleItem()
+    }
+    
+    
     func appDidFinishLaunching(_ manager: AppManager) {
         menu = AppMenu(
             title: "Auto Dark Mode",
@@ -147,6 +182,7 @@ class MenuHandler: AppManagedObject, AppManagerDelegate, TimerHandlerDelegate, N
     func registerToDelegateCallers() {
         manager.addDelegate(newElement: self)
         timerHandler.addDelegate(newElement: self)
+        darkModeHandler.addDelegate(newElement: self)
     }
     
 }
