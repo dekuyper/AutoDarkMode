@@ -46,14 +46,11 @@ class AppLocationManager: AppManagedObject, AppManagerDelegate, CLLocationManage
             locationManager.startUpdatingLocation()
             
         case .restricted:
-            notificationHandler.showAlert(
-                title: "Access to Location Services is Restricted",
-                message: "Parental Controls or a system administrator may be limiting your access to location services."
-            )
+            notificationHandler.locationPermissions(restricted: "")
         
         case .denied:
             print("I'm sorry - I can't show location. User has not authorized it")
-            notificationHandler.showDeniedAlert()
+            notificationHandler.locationPermissions(denied: "")
         }
     }
     
@@ -71,10 +68,7 @@ class AppLocationManager: AppManagedObject, AppManagerDelegate, CLLocationManage
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        notificationHandler.showAlert(
-            title: "Location Access Failure",
-            message: "App could not access locations. Loation services may be unavailable or are turned off. Error code: \(error)"
-        )
+        notificationHandler.locationPermissions(failed: "\(error)")
     }
 
     // App delegate calls

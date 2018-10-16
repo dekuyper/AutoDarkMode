@@ -52,14 +52,14 @@ class TimerHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegate {
     
     func scheduleSunriseTimer(sunriseDate: Date) {
         let timer = Timer(fireAt: sunriseDate, interval: 0, target: self, selector: #selector(disableDarkMode), userInfo: nil, repeats: false)
-        timer.tolerance = 30
+        timer.tolerance = 10
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
         switchModeTimers.append(timer)
     }
     
     func scheduleSunsetTimer(sunsetDate: Date) {
         let timer = Timer(fireAt: sunsetDate, interval: 0, target: self, selector: #selector(enableDarkMode), userInfo: nil, repeats: false)
-        timer.tolerance = 30
+        timer.tolerance = 10
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
         switchModeTimers.append(timer)
     }
@@ -99,7 +99,6 @@ class TimerHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegate {
 
     func solarHandler(didFinishLoading solarHandler: SolarHandler) {
         initState()
-        
     }
 
     func appDidFinishLaunching(_ manager: AppManager) {

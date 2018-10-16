@@ -7,23 +7,52 @@
 //
 
 import Foundation
+import UserNotifications
 
-class NotificationHandler: AppManagedObject, AppManagerDelegate, NSUserNotificationCenterDelegate {
+class NotificationHandler: AppManagedObject, AppManagerDelegate, UNUserNotificationCenterDelegate {
 
-    func showAlert(title: String, message: String) {
-        print(
-            "Title: \(title)",
-            "Message: \(message)"
-        )
+    let notificationCenter = UNUserNotificationCenter.current()
+    
+    func scheduleTestNotification() {
+        // Content
+        let content = UNMutableNotificationContent()
+        content.title = "Late wake up call"
+        content.body = "The early bird catches the worm, but the second mouse gets the cheese."
+        content.categoryIdentifier = "alarm"
+        content.userInfo = ["customData": "fizzbuzz"]
+
+        // Trigger time
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        notificationCenter.add(request)
     }
     
-    func showDeniedAlert() {
-        print("Location access denied")
+    // Location Handler notifications
+    func locationPermissions(denied message: String) {
+        print("Location permissions denied.: Message: \(message)")
+    }
+
+    func locationPermissions(restricted message: String) {
+        print("Location permissions restricted. Message: \(message)")
     }
     
+    func locationPermissions(failed message: String) {
+        print("App could not access locations. Loation services may be unavailable or are turned off. Error code: \(message)")
+    }
+
     // App Manager delegate calls
     func appDidFinishLaunching(_ manager: AppManager) {
-        
+        notificationCenter.requestAuthorization(options: [.alert, .badge])
+        { (granted, error) in
+            // Enable or disable features based on authorization.
+            if granted {
+                print("Notifications permission granted.")
+                self.scheduleTestNotification()
+            } else {
+                print("Notifications permission denied.")
+            }
+        }
     }
     
     func appWillTerminate(_ manager: AppManager) {
@@ -32,6 +61,7 @@ class NotificationHandler: AppManagedObject, AppManagerDelegate, NSUserNotificat
     
     func registerToDelegateCallers() {
         manager.addDelegate(newElement: self)
+        notificationCenter.delegate = self
     }
     
 }

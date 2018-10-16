@@ -101,6 +101,10 @@ class DarkModeHandler: AppManagedObject, AppManagerDelegate, SolarHandlerDelegat
             didToggle()
         }
     }
+    
+    func enableWithAlert(seconds beforeChange: Int) {
+        
+    }
 
     // DELEGATE METHODS
     // OWN

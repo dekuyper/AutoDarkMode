@@ -59,10 +59,6 @@ class SolarHandler: AppManagedObject, AppManagerDelegate, AppLocationManagerDele
         didFinishLoading()
     }
     
-    func addDelegate(newElement: SolarHandlerDelegate) {
-        delegates.append(newElement)
-    }
-    
     var isDaytime: Bool {
         return solarRegistry!.today.isDaytime
     }
@@ -92,6 +88,11 @@ class SolarHandler: AppManagedObject, AppManagerDelegate, AppLocationManagerDele
         default:
             return solarRegistry!.tomorrow.sunset!
         }
+    }
+    
+    // Has Delegates
+    func addDelegate(newElement: SolarHandlerDelegate) {
+        delegates.append(newElement)
     }
     
     // Delegate calls
