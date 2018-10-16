@@ -11,18 +11,19 @@ import UserNotifications
 
 class NotificationHandler: AppManagedObject, AppManagerDelegate, UNUserNotificationCenterDelegate {
 
+    let categoryId = "DARK_MODE_SWITCH"
     let notificationCenter = UNUserNotificationCenter.current()
     
-    func scheduleTestNotification() {
+    func scheduleNotification() {
         // Content
         let content = UNMutableNotificationContent()
-        content.title = "Late wake up call"
-        content.body = "The early bird catches the worm, but the second mouse gets the cheese."
-        content.categoryIdentifier = "alarm"
-        content.userInfo = ["customData": "fizzbuzz"]
+        content.title = "Auto Dark Mode"
+        content.body = "Dark Mode will be Disabled in 15 seconds."
+        content.categoryIdentifier = categoryId
+        content.userInfo = ["SWITCH_TO": "Disable"]
 
         // Trigger time
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         notificationCenter.add(request)
@@ -41,6 +42,23 @@ class NotificationHandler: AppManagedObject, AppManagerDelegate, UNUserNotificat
         print("App could not access locations. Loation services may be unavailable or are turned off. Error code: \(message)")
     }
 
+    // Config notification center
+    func declareNotificationTypes() {
+        // Define the custom actions.
+        let cancelAction = UNNotificationAction(identifier: "CANCEL_ACTION",
+                                                 title: "Cancel",
+                                                 options: UNNotificationActionOptions(rawValue: 0))
+        // Define the notification type
+        let darkModeSwitchCategory =
+            UNNotificationCategory(identifier: categoryId,
+                                   actions: [cancelAction],
+                                   intentIdentifiers: [],
+                                   hiddenPreviewsBodyPlaceholder: "",
+                                   options: .customDismissAction)
+        // Register the notification type.
+        notificationCenter.setNotificationCategories([darkModeSwitchCategory])
+    }
+    
     // App Manager delegate calls
     func appDidFinishLaunching(_ manager: AppManager) {
         notificationCenter.requestAuthorization(options: [.alert, .badge])
@@ -48,7 +66,8 @@ class NotificationHandler: AppManagedObject, AppManagerDelegate, UNUserNotificat
             // Enable or disable features based on authorization.
             if granted {
                 print("Notifications permission granted.")
-                self.scheduleTestNotification()
+                //self.declareNotificationTypes()
+                self.scheduleNotification()
             } else {
                 print("Notifications permission denied.")
             }

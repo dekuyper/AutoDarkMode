@@ -17,8 +17,7 @@ struct SystemEvents {
 
             do {
                 let result = try AppleScript.run(myAppleScript: testScript)
-                print(result)
-                return result == "1" ? true : false
+                return result == "1"
             } catch {
                 return false
             }

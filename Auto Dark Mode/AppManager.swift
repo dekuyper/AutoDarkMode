@@ -47,7 +47,7 @@ class AppManager: NSObject {
     
     func appDidFinishLaunching() {
         if !SystemEvents.isActive {
-            print("TODO: Activate system events app")
+            print("TODO: Activate system events")
             return
         }
         
