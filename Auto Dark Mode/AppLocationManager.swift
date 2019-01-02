@@ -12,6 +12,7 @@ import CoreLocation
 class AppLocationManager: AppManagedObject, AppManagerDelegate, CLLocationManagerDelegate {
     
     private var delegates = [AppLocationManagerDelegate]()
+
     let locationManager = CLLocationManager()
     var notificationHandler: NotificationHandler {
         get {

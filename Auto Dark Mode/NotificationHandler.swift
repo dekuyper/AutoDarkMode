@@ -48,10 +48,16 @@ class NotificationHandler: AppManagedObject, AppManagerDelegate, UNUserNotificat
         let cancelAction = UNNotificationAction(identifier: "CANCEL_ACTION",
                                                  title: "Cancel",
                                                  options: UNNotificationActionOptions(rawValue: 0))
+        
+        let dismissAction = UNNotificationAction(identifier: "DISMISS_ACTION",
+                                                title: "Dismiss",
+                                                options: UNNotificationActionOptions(rawValue: 0))
+
+
         // Define the notification type
         let darkModeSwitchCategory =
             UNNotificationCategory(identifier: categoryId,
-                                   actions: [cancelAction],
+                                   actions: [dismissAction, cancelAction],
                                    intentIdentifiers: [],
                                    hiddenPreviewsBodyPlaceholder: "",
                                    options: .customDismissAction)

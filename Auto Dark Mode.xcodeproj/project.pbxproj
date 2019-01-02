@@ -22,6 +22,7 @@
 		0EAD7532216781A8008643AB /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD7531216781A8008643AB /* AppLocationManager.swift */; };
 		0EAD753421678C4B008643AB /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAD753321678C4B008643AB /* AppManager.swift */; };
 		0EB2204C2166C5AA000F9CCC /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB2204B2166C5AA000F9CCC /* NotificationHandler.swift */; };
+		0ECA13C121DBEB660044F709 /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA13C021DBEB660044F709 /* LoginItem.swift */; };
 		9B66C4CE29CC5DEACEB9F4DD /* Pods_Auto_Dark_Mode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59DA017434FB93897258B2FA /* Pods_Auto_Dark_Mode.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		0EAD7531216781A8008643AB /* AppLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
 		0EAD753321678C4B008643AB /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		0EB2204B2166C5AA000F9CCC /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		0ECA13C021DBEB660044F709 /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 		59DA017434FB93897258B2FA /* Pods_Auto_Dark_Mode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Auto_Dark_Mode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A254B6F8E992B4195AA39F1 /* Pods-Auto Dark Mode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auto Dark Mode.release.xcconfig"; path = "Pods/Target Support Files/Pods-Auto Dark Mode/Pods-Auto Dark Mode.release.xcconfig"; sourceTree = "<group>"; };
 		8A3EF3B79BE9BA05D9DF628C /* Pods-Auto Dark Mode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Auto Dark Mode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Auto Dark Mode/Pods-Auto Dark Mode.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				0E9A26182163586F00547206 /* Assets.xcassets */,
 				0E9A261A2163586F00547206 /* Main.storyboard */,
 				0E904593216C0E1F00D53774 /* SystemEvents.swift */,
+				0ECA13C021DBEB660044F709 /* LoginItem.swift */,
 			);
 			path = "Auto Dark Mode";
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				0E77DB922166D18E00C0E348 /* TimerHandler.swift in Sources */,
 				0E904594216C0E1F00D53774 /* SystemEvents.swift in Sources */,
+				0ECA13C121DBEB660044F709 /* LoginItem.swift in Sources */,
 				0EAD753421678C4B008643AB /* AppManager.swift in Sources */,
 				0E77DB8A21666C9500C0E348 /* MenuHandler.swift in Sources */,
 				0EB2204C2166C5AA000F9CCC /* NotificationHandler.swift in Sources */,
@@ -413,7 +417,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = 23Y28PW4VV;
+				DEVELOPMENT_TEAM = 6NZV26L8H5;
 				INFOPLIST_FILE = "Auto Dark Mode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -436,7 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = 23Y28PW4VV;
+				DEVELOPMENT_TEAM = 6NZV26L8H5;
 				INFOPLIST_FILE = "Auto Dark Mode/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
