@@ -16,8 +16,6 @@ SWIFT app for MacOS Mojave that automatically toggles Dark Mode theme at sunrise
 
 # Attributions
 ## App Icon:
-**From:** https://www.iconfinder.com/icons/3469775/daytime_icon_line_sunset_web_icon
-
-**Creator:** https://www.iconfinder.com/iconium
-
-**License:** https://creativecommons.org/licenses/by/3.0/
+- **From:** https://www.iconfinder.com/icons/3469775/daytime_icon_line_sunset_web_icon
+- **Creator:** https://www.iconfinder.com/iconium
+- **License:** https://creativecommons.org/licenses/by/3.0/
